@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/image-converter/sw.js', { scope: '/image-converter/' })})}
