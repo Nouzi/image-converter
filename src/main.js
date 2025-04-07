@@ -1,14 +1,11 @@
 import { convertToWebP, downloadBlob } from './imageConverter.js';
 import JSZip from 'jszip';
 
-const zip = new JSZip();
-
 // DOM Elements
 const filesUploadSection = document.getElementById('filesUploadSection');
 const resultsSection = document.getElementById('resultsSection');
 const fileList = document.getElementById('fileList');
 const convertedImagesList = document.getElementById('convertedImagesList');
-const backToUploadBtn = document.getElementById('backToUploadBtn');
 const convertBtn = document.getElementById('convertBtn');
 const downloadAllBtn = document.getElementById('downloadAllBtn');
 const qualitySlider = document.getElementById('qualitySlider');
@@ -20,11 +17,37 @@ let convertedFiles = [];
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-  // File Input Handler
+  // File Input Handler (fixed)
   document.getElementById('fileInput').addEventListener('change', (event) => {
-    filesToConvert = Array.from(event.target.files);
+    const newFiles = Array.from(event.target.files);
+    filesToConvert = [...filesToConvert, ...newFiles];
     renderFileList();
     updateConvertButton();
+    event.target.value = '';
+  });
+
+  // Drag and drop functionality (fixed)
+  const dropZone = document.querySelector('label[for="fileInput"]');
+  
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('bg-gray-100');
+  });
+  
+  dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('bg-gray-100');
+  });
+  
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('bg-gray-100');
+    
+    if (e.dataTransfer.files.length) {
+      const newFiles = Array.from(e.dataTransfer.files);
+      filesToConvert = [...filesToConvert, ...newFiles];
+      renderFileList();
+      updateConvertButton();
+    }
   });
 
   // Quality slider
@@ -37,12 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Download all button
   downloadAllBtn.addEventListener('click', downloadAllFiles);
-
-  // Back to upload button
-  backToUploadBtn.addEventListener('click', () => toggleSections());
 });
 
-// Convert Files to WebP
+// Convert Files to WebP (keep your original implementation)
 async function convertFiles() {
   const quality = parseInt(qualitySlider.value) / 100;
   convertedFiles = [];
@@ -73,23 +93,18 @@ async function convertFiles() {
     console.error('Conversion error:', error);
     alert('Error converting images: ' + error.message);
   } finally {
-    // Reset button state
     convertBtn.disabled = false;
     convertBtn.textContent = 'Convert to WebP';
   }
 }
 
-// Download all files as zip
+// Download all files as zip (keep your original implementation)
 async function downloadAllFiles() {
   if (convertedFiles.length === 0) return;
 
   try {
     const zip = new JSZip();
-
-    convertedFiles.forEach(file => {
-      zip.file(file.name, file.blob);
-    });
-
+    convertedFiles.forEach(file => zip.file(file.name, file.blob));
     const zipBlob = await zip.generateAsync({type: 'blob'});
     downloadBlob(zipBlob, 'webp-images.zip');
   } catch (error) {
