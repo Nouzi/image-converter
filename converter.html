@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebP Converter - Convert</title>
+    <link rel="icon" type="image/x-icon" href="/image-converter/assets/image-CVSzT3q_.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#3B82F6',
+              secondary: '#64748B',
+              neutral: '#F1F5F9',
+            },
+            screens: {
+              'sm': '640px',
+              'md': '768px',
+              'lg': '1024px',
+              'xl': '1280px',
+              '2xl': '1536px',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="module" crossorigin src="/image-converter/assets/main-CE1ra2OV.js"></script>
+  <link rel="stylesheet" crossorigin href="/image-converter/assets/converter-D4eXMS__.css">
+<link rel="manifest" href="/image-converter/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/image-converter/registerSW.js"></script></head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex space-x-8">
+                    <a href="/" class="text-gray-700 hover:text-blue-600">Home</a>
+                    <a href="/converter" class="text-gray-700 hover:text-blue-600">Let's Convert</a>
+                    <a href="#features" class="text-gray-700 hover:text-blue-600">Features</a>
+                    <a href="#faq" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto p-6">
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <div id="filesUploadSection">
+                <input type="file" id="fileInput" multiple class="hidden">
+                <label for="fileInput" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-50 mb-6">
+                    <div class="text-center">
+                        <p class="text-gray-700 font-medium">Drag & drop images or click to upload</p>
+                        <p class="text-gray-500 text-sm">Supported formats: JPEG, PNG, BMP</p>
+                    </div>
+                </label>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">Quality: <span id="qualityValue">80%</span></label>
+                    <input type="range" id="qualitySlider" min="1" max="100" value="80" class="w-full">
+                </div>
+
+                <div class="button-group">
+                    <button id="convertBtn" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+                        Convert to WebP
+                    </button>
+                </div>
+
+                <div id="fileList" class="mb-8"></div>
+            </div>
+
+            <div id="resultsSection" class="hidden">
+                <button id="downloadAllBtn" class="bg-green-600 text-white py-2 px-4 ml-4 rounded-lg hover:bg-green-700">
+                    Download All as ZIP
+                </button>
+                <div id="convertedImagesList" class="mb-6"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-gray-600">&copy; 2025 WebP Converter - Creator <a class="font-bold text-primary" href="https://github.com/Nouzi">Nouzi</a>. All rights reserved. For questions/ideas or issues please refer to <a class="font-bold text-primary" href="https://github.com/Nouzi/image-converter/issues">Project Issues</a></p>
+        <p class="text-gray-600 mb-2">
+          Version 1.1 | Contact: 
+          <a href="mailto:tomikitd@gmail.com" class="text-blue-600 hover:underline">
+            tomikitd@gmail.com
+          </a>
+        </p>
+        <p class="text-gray-500 text-sm">
+          © 2025 WebP Converter. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+</body>
+</html>
